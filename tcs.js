@@ -21,6 +21,7 @@ var snakeY = blockSize * 5;
 var snakeBody = [];
 
 //set speed of snake
+// var time = 12
 var time = 1.5
 
 var speedX = 0;
@@ -58,7 +59,10 @@ window.onload = function() {
 	context.fillRect(0, 0, board.height, board.width);
 
 	update();
-	interval = setInterval(update, 1000/(5*time));
+	// interval = setInterval(update, 1000/(5*time));
+	interval = setInterval(function() {
+		requestAnimationFrame(update);
+	}, 1000/(5*time));
 	if (gameOver) clearInterval(interval);
 }
 
@@ -114,8 +118,11 @@ function update() {
 	context.fillRect(snakeX, snakeY, blockSize, blockSize);
 
 	checkGameOver();
+	// requestAnimationFrame(update);
 	// console.log("here")
 }
+
+
 
 function changeDirection(e) {
 	// console.log(e.code)
@@ -125,7 +132,10 @@ function changeDirection(e) {
 		// console.log(time, interval);
 		if(paused){
 			paused = false;
-			interval = setInterval(update, 1000/(5*time));
+			// interval = setInterval(update, 1000/(5*time));
+			interval = setInterval(function() {
+				requestAnimationFrame(update);
+			}, 1000/(5*time));
 		}
 		else{
 			paused = true;
@@ -163,7 +173,10 @@ function changeDirection(e) {
 		}
 		clearInterval(interval);
 		update();
-		interval = setInterval(update, 1000/(5*time));
+		// interval = setInterval(update, 1000/(5*time));
+		interval = setInterval(function() {
+			requestAnimationFrame(update);
+		}, 1000/(5*time));
 	}
 
 
